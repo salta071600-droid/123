@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Юбилей · 20 октября</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #F6F0E1;
+    --paper-2: #EFE6D2;
+    --wine: #6B2438;
+    --wine-ink: #4A1927;
+    --gold: #A9823C;
+    --gold-soft: #D9C69A;
+    --ink: #26201A;
+    --ink-soft: #6B6156;
+    --open: #8C7B6B;
+    --taken: #A9823C;
+    --done: #5C7A52;
+    --done-bg: #E4EBDD;
+    --taken-bg: #F1E6CE;
+    --open-bg: #ECE5D6;
+    --card-bg: #FFFDF8;
+    --border: #DFD3B8;
+    --shadow: 0 1px 0 rgba(38,32,26,0.06);
+    --radius: 4px;
+    --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+    --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper: #1E1A15;
+      --paper-2: #251F19;
+      --ink: #EDE6D8;
+      --ink-soft: #B3A996;
+      --card-bg: #29231C;
+      --border: #3C332688;
+      --open-bg: #33291f66;
+      --taken-bg: #3a2f1a88;
+      --done-bg: #26301f88;
+      --gold-soft: #7d6a3c;
+      --shadow: 0 1px 0 rgba(0,0,0,0.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper: #1E1A15;
+    --paper-2: #251F19;
+    --ink: #EDE6D8;
+    --ink-soft: #B3A996;
+    --card-bg: #29231C;
+    --border: #3C332688;
+    --open-bg: #33291f66;
+    --taken-bg: #3a2f1a88;
+    --done-bg: #26301f88;
+    --gold-soft: #7d6a3c;
+    --shadow: 0 1px 0 rgba(0,0,0,0.3);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  button{font-family:inherit;}
+  :focus-visible{outline:2px solid var(--wine); outline-offset:2px;}
+
+  .wrap{max-width:920px; margin:0 auto; padding: 0 24px;}
+
+  /* Hero */
+  .hero{
+    padding: 72px 24px 56px;
+    text-align:center;
+    background:
+      radial-gradient(ellipse at 50% -10%, var(--gold-soft) 0%, transparent 60%),
+      var(--paper);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-date{
+    font-family: var(--font-display);
+    font-weight:500;
+    font-size: clamp(88px, 18vw, 148px);
+    line-height:0.9;
+    color: var(--wine);
+    letter-spacing:-0.02em;
+  }
+  :root[data-theme="dark"] .hero-date, @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .hero-date{ color:#D9A5AE; } }
+  .hero-month{
+    font-family: var(--font-body);
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color: var(--ink-soft);
+    margin-top:6px;
+  }
+  .hero-title{
+    font-family: var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size: clamp(28px, 4vw, 40px);
+    margin: 22px 0 10px;
+    color: var(--ink);
+  }
+  .hero-sub{
+    max-width:480px;
+    margin: 0 auto;
+    color: var(--ink-soft);
+    font-size:16px;
+  }
+  .hero-facts{
+    margin-top:32px;
+    display:flex;
+    justify-content:center;
+    gap: 28px;
+    flex-wrap:wrap;
+    font-size:14px;
+    color: var(--ink-soft);
+  }
+  .hero-facts span{ font-weight:600; color: var(--ink); }
+  .hero-facts .fact{ padding: 6px 0; border-top: 1px solid var(--border); padding-top:10px; }
+
+  /* Progress */
+  .progress-section{ padding: 40px 24px 8px; }
+  .progress-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; flex-wrap:wrap; gap:8px;}
+  .progress-head h2{ font-family:var(--font-display); font-weight:500; font-size:20px; margin:0;}
+  .progress-stat{ font-size:14px; color:var(--ink-soft);}
+  .progress-bar{ height:8px; background:var(--paper-2); border-radius:99px; overflow:hidden; border:1px solid var(--border);}
+  .progress-bar-fill{ height:100%; background: linear-gradient(90deg, var(--gold), var(--done)); width:0%; transition: width .5s ease; }
+  .progress-legend{ display:flex; gap:18px; margin-top:10px; font-size:13px; color:var(--ink-soft); flex-wrap:wrap;}
+  .legend-dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+
+  /* How it works */
+  .how{ padding: 28px 24px 8px; }
+  .how ol{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .how li{ font-size:14px; color:var(--ink-soft); border-top:1px solid var(--border); padding-top:10px;}
+  .how li b{ display:block; color:var(--ink); font-weight:600; margin-bottom:2px;}
+  @media (max-width:640px){ .how ol{ grid-template-columns:1fr;} }
+
+  /* Task list */
+  .tasks{ padding: 40px 24px 80px; }
+  .tasks h2{ font-family:var(--font-display); font-weight:500; font-size:22px; margin: 0 0 4px;}
+  .tasks > .hint{ color:var(--ink-soft); font-size:14px; margin-bottom:22px;}
+
+  .task{
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom:12px;
+    overflow:hidden;
+  }
+  .task-row{
+    display:flex;
+    align-items:flex-start;
+    gap:16px;
+    padding: 18px 20px;
+    cursor:pointer;
+  }
+  .task-num{
+    font-family: var(--font-display);
+    font-size:15px;
+    color: var(--ink-soft);
+    width:22px;
+    flex-shrink:0;
+    padding-top:2px;
+  }
+  .task-main{ flex:1; min-width:0; }
+  .task-title{ font-weight:600; font-size:16px; }
+  .task-desc{ color:var(--ink-soft); font-size:14px; margin-top:3px; }
+  .task-meta{ margin-top:8px; font-size:13px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .status-pill{
+    display:inline-flex; align-items:center; gap:6px;
+    padding: 3px 10px;
+    border-radius:99px;
+    font-size:12px;
+    font-weight:600;
+  }
+  .status-pill.open{ background:var(--open-bg); color:var(--open); }
+  .status-pill.in_progress{ background:var(--taken-bg); color:var(--taken); }
+  .status-pill.done{ background:var(--done-bg); color:var(--done); }
+  .status-pill .dot{ width:6px; height:6px; border-radius:50%; background:currentColor; }
+  .assignee-name{ color:var(--ink-soft); }
+  .assignee-name b{ color:var(--ink); font-weight:600;}
+
+  .task-toggle{ color:var(--ink-soft); font-size:18px; padding-top:2px; transition:transform .2s ease; flex-shrink:0;}
+  .task.expanded .task-toggle{ transform:rotate(180deg); }
+
+  .task-panel{
+    max-height:0;
+    overflow:hidden;
+    transition: max-height .25s ease;
+    border-top:1px solid transparent;
+  }
+  .task.expanded .task-panel{
+    max-height:400px;
+    border-top:1px solid var(--border);
+  }
+  .task-panel-inner{ padding: 16px 20px 20px 58px; }
+
+  .field-row{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+  input[type="text"], textarea{
+    font-family:inherit;
+    font-size:14px;
+    padding:9px 12px;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    background:var(--paper);
+    color:var(--ink);
+    flex:1;
+    min-width:180px;
+  }
+  textarea{ width:100%; resize:vertical; min-height:56px; }
+  .btn{
+    font-size:14px;
+    font-weight:600;
+    padding:9px 16px;
+    border-radius:var(--radius);
+    border:1px solid var(--wine);
+    background:var(--wine);
+    color:#fff;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn:hover{ background:var(--wine-ink); border-color:var(--wine-ink); }
+  .btn.secondary{
+    background:transparent;
+    color:var(--ink-soft);
+    border-color:var(--border);
+  }
+  .btn.secondary:hover{ color:var(--ink); border-color:var(--ink-soft); }
+  .btn.small{ padding:6px 12px; font-size:13px;}
+  .btn:disabled{ opacity:.5; cursor:default; }
+
+  .note-block{ margin-top:12px; font-size:13px; color:var(--ink-soft);}
+  .note-block .note-text{ color:var(--ink); background:var(--paper-2); padding:8px 10px; border-radius:var(--radius); margin-top:4px; white-space:pre-wrap;}
+
+  .save-msg{ font-size:12px; margin-top:8px; min-height:16px; }
+  .save-msg.error{ color:var(--wine); }
+  .save-msg.ok{ color:var(--done); }
+
+  .footer{
+    text-align:center;
+    padding: 30px 24px 60px;
+    color: var(--ink-soft);
+    font-size:13px;
+  }
+  .footer .heart{ color:var(--wine); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-date">20</div>
+  <div class="hero-month">октября · 2026</div>
+  <div class="hero-title">Большой юбилей</div>
+  <div class="hero-sub">Соберёмся всей семьёй, чтобы отпраздновать этот день. Праздник готовим вместе — ниже список дел, каждое ищет своего человека.</div>
+  <div class="hero-facts">
+    <div class="fact">Гостей: <span>200</span></div>
+    <div class="fact">Дата: <span>20 октября</span></div>
+    <div class="fact">Формат: <span>банкет</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="progress-section">
+    <div class="progress-head">
+      <h2>Готовность к празднику</h2>
+      <div class="progress-stat" id="progressStat">0 из 10 дел разобрано</div>
+    </div>
+    <div class="progress-bar"><div class="progress-bar-fill" id="progressFill"></div></div>
+    <div class="progress-legend">
+      <span><i class="legend-dot" style="background:var(--open)"></i>свободно</span>
+      <span><i class="legend-dot" style="background:var(--taken)"></i>в работе</span>
+      <span><i class="legend-dot" style="background:var(--done)"></i>готово</span>
+    </div>
+  </div>
+
+  <div class="how">
+    <ol>
+      <li><b>1. Выберите дело</b>Откройте карточку и посмотрите, что нужно сделать.</li>
+      <li><b>2. Впишите имя</b>Нажмите «Взять на себя» и укажите, кто этим займётся.</li>
+      <li><b>3. Отмечайте прогресс</b>Оставляйте короткую заметку и отмечайте готово, когда сделано.</li>
+    </ol>
+  </div>
+
+  <div class="tasks">
+    <h2>Список дел</h2>
+    <div class="hint">Нажмите на дело, чтобы взять его на себя или посмотреть, кто уже занимается.</div>
+    <div id="taskList"></div>
+  </div>
+
+</div>
+
+<div class="footer">Готовим праздник всей семьёй <span class="heart">♥</span></div>
+
+<script>
+const TASKS = [
+  { id:'t1', title:'Зал и рассадка', desc:'Аренда площадки на 200 гостей, план рассадки, договор с администрацией зала.' },
+  { id:'t2', title:'Меню и кейтеринг', desc:'Выбор блюд и напитков, согласование с кейтерингом, учёт особых пожеланий по питанию.' },
+  { id:'t3', title:'Ведущий и программа', desc:'Тамада или ведущий, музыка, конкурсы, тайминг вечера от начала до конца.' },
+  { id:'t4', title:'Фото и видео', desc:'Фотограф и видеооператор, список важных моментов, которые точно нужно снять.' },
+  { id:'t5', title:'Приглашения и список гостей', desc:'Рассылка приглашений, сбор подтверждений, финальный список на 200 человек.' },
+  { id:'t6', title:'Подарок и поздравления', desc:'Организация общего подарка от семьи, сбор тостов и поздравительных слов.' },
+  { id:'t7', title:'Транспорт и парковка', desc:'Трансфер для гостей, которым нужна помощь, парковка у зала.' },
+  { id:'t8', title:'Декор и цветы', desc:'Оформление зала, фотозона, цветы, свечи, праздничные баннеры.' },
+  { id:'t9', title:'Торт и сладкий стол', desc:'Заказ торта, оформление десертного стола.' },
+  { id:'t10', title:'Координация в день праздника', desc:'Встреча гостей, помощь ведущему, решение вопросов на месте в день юбилея.' },
+];
+
+let dbApi = null;
+let state = {}; // id -> {assignee, status, note}
+let expanded = null;
+
+function defaultState(){ return { assignee:null, status:'open', note:'' }; }
+TASKS.forEach(t => state[t.id] = defaultState());
+
+const listEl = document.getElementById('taskList');
+
+function statusLabel(s){
+  if(s==='done') return 'Готово';
+  if(s==='in_progress') return 'В работе';
+  return 'Свободно';
+}
+
+function render(){
+  // progress
+  const total = TASKS.length;
+  const done = TASKS.filter(t => state[t.id].status === 'done').length;
+  const taken = TASKS.filter(t => state[t.id].status === 'in_progress').length;
+  const resolved = done + taken;
+  document.getElementById('progressStat').textContent = `${resolved} из ${total} дел разобрано · ${done} готово`;
+  document.getElementById('progressFill').style.width = `${(resolved/total)*100}%`;
+
+  listEl.innerHTML = TASKS.map((t, i) => {
+    const s = state[t.id];
+    const isExpanded = expanded === t.id;
+    return `
+    <div class="task ${isExpanded?'expanded':''}" data-id="${t.id}">
+      <div class="task-row" onclick="toggleTask('${t.id}')">
+        <div class="task-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="task-main">
+          <div class="task-title">${t.title}</div>
+          <div class="task-desc">${t.desc}</div>
+          <div class="task-meta">
+            <span class="status-pill ${s.status}"><i class="dot"></i>${statusLabel(s.status)}</span>
+            ${s.assignee ? `<span class="assignee-name">— <b>${escapeHtml(s.assignee)}</b></span>` : ''}
+          </div>
+        </div>
+        <div class="task-toggle">⌄</div>
+      </div>
+      <div class="task-panel">
+        <div class="task-panel-inner">
+          ${panelContent(t, s)}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function panelContent(t, s){
+  if(!s.assignee){
+    return `
+      <div class="field-row">
+        <input type="text" id="name-${t.id}" placeholder="Ваше имя" maxlength="60">
+        <button class="btn" onclick="claim('${t.id}')">Взять на себя</button>
+      </div>
+      <div class="save-msg" id="msg-${t.id}"></div>
+    `;
+  }
+  const doneChecked = s.status === 'done';
+  return `
+    <div class="field-row">
+      <button class="btn small ${doneChecked?'secondary':''}" onclick="setDone('${t.id}', ${!doneChecked})">
+        ${doneChecked ? 'Снять отметку «готово»' : 'Отметить готовым'}
+      </button>
+      <button class="btn small secondary" onclick="release('${t.id}')">Освободить дело</button>
+    </div>
+    <div class="field-row">
+      <textarea id="note-${t.id}" placeholder="Короткая заметка о прогрессе (необязательно)">${escapeHtml(s.note||'')}</textarea>
+    </div>
+    <div class="field-row">
+      <button class="btn small" onclick="saveNote('${t.id}')">Сохранить заметку</button>
+    </div>
+    <div class="save-msg" id="msg-${t.id}"></div>
+  `;
+}
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+window.toggleTask = function(id){
+  expanded = expanded === id ? null : id;
+  render();
+}
+
+function showMsg(id, text, ok){
+  const el = document.getElementById('msg-'+id);
+  if(!el) return;
+  el.textContent = text;
+  el.className = 'save-msg ' + (ok ? 'ok' : 'error');
+}
+
+async function writeTask(id, patch){
+  if(!dbApi){
+    // local-only fallback (no shared board available in this view)
+    state[id] = { ...state[id], ...patch };
+    render();
+    return true;
+  }
+  try{
+    await dbApi.doc('tasks/'+id).set(patch, { merge:true });
+    return true;
+  }catch(err){
+    const code = (err && err.code) || '';
+    if(code === 'not_granted' || code === 'not_writer'){
+      showMsg(id, 'У вас нет доступа для изменения. Попросите organiзатора открыть доступ на редактирование.', false);
+    } else {
+      showMsg(id, 'Не удалось сохранить, попробуйте ещё раз.', false);
+    }
+    return false;
+  }
+}
+
+window.claim = async function(id){
+  const input = document.getElementById('name-'+id);
+  const name = (input.value || '').trim();
+  if(!name){
+    showMsg(id, 'Пожалуйста, впишите имя.', false);
+    return;
+  }
+  const ok = await writeTask(id, { assignee:name, status:'in_progress', note:'' , updatedAt: Date.now()});
+  if(ok) showMsg(id, 'Готово, дело за вами!', true);
+}
+
+window.release = async function(id){
+  const ok = await writeTask(id, { assignee:null, status:'open', note:'', updatedAt: Date.now() });
+  if(ok) showMsg(id, 'Дело снова свободно.', true);
+}
+
+window.setDone = async function(id, doneVal){
+  const s = state[id];
+  const ok = await writeTask(id, { status: doneVal ? 'done' : 'in_progress', updatedAt: Date.now() });
+  if(ok) showMsg(id, doneVal ? 'Отмечено готовым!' : 'Отметка снята.', true);
+}
+
+window.saveNote = async function(id){
+  const ta = document.getElementById('note-'+id);
+  const note = (ta.value || '').trim();
+  const ok = await writeTask(id, { note, updatedAt: Date.now() });
+  if(ok) showMsg(id, 'Заметка сохранена.', true);
+}
+
+async function init(){
+  render();
+  try{
+    dbApi = await claude.use('db');
+  }catch(e){
+    dbApi = null;
+  }
+  if(dbApi){
+    try{
+      dbApi.collection('tasks').onSnapshot(docs => {
+        docs.forEach(d => {
+          const data = d.data ? d.data() : d;
+          const id = d.id || (data && data.id);
+          if(id && TASKS.some(t => t.id === id)){
+            state[id] = {
+              assignee: data.assignee ?? null,
+              status: data.status ?? 'open',
+              note: data.note ?? ''
+            };
+          }
+        });
+        render();
+      });
+    }catch(e){
+      // subscription unavailable — page still works read-only with local defaults
+    }
+  }
+}
+
+init();
+</script>
+</body>
+</html>
